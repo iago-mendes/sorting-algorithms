@@ -15,3 +15,26 @@ def insertionSort(items):
 			items[j-1] = tmpItem
 
 			j -= 1
+
+def mergeSort(items):
+	if len(items) > 1:
+		middleIndex = int(len(items)/2)
+		left = items[0:middleIndex]
+		right = items[middleIndex:]
+
+		mergeSort(left)
+		mergeSort(right)
+
+		leftIndex, rightIndex = 0, 0
+		for i in range(len(items)):
+			leftValue = left[leftIndex] if leftIndex < len(left) else None
+			rightValue = right[rightIndex] if rightIndex < len(right) else None
+
+			if (leftValue and rightValue and leftValue < rightValue) or rightValue is None:
+				items[i] = leftValue
+				leftIndex += 1
+			elif (leftValue and rightValue and leftValue >= rightValue) or leftValue is None:
+				items[i] = rightValue
+				rightIndex += 1
+			else:
+				raise Exception('Could not merge!')
