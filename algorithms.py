@@ -38,3 +38,20 @@ def mergeSort(items):
 				rightIndex += 1
 			else:
 				raise Exception('Could not merge!')
+
+def quickSort(items):
+	if len(items) > 1:
+		pivotIndex = int(len(items)/2)
+		smallerItems = []
+		largerItems = []
+
+		for i, value in enumerate(items):
+			if i != pivotIndex:
+				if value < items[pivotIndex]:
+					smallerItems.append(value)
+				else:
+					largerItems.append(value)
+		
+		quickSort(smallerItems)
+		quickSort(largerItems)
+		items[:] = smallerItems + [items[pivotIndex]] + largerItems
